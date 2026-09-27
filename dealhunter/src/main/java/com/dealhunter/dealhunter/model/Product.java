@@ -1,20 +1,20 @@
 package com.dealhunter.dealhunter.model;
 
 public class Product {
-    private String name;
     private double price;
+    private String ID;
 
-    public Product(String name, double price) {
-        this.name = name;
+    public Product(String id, double price) {
+        this.ID = id;
         this.price = price;
     }
 
-    public String getName() {
-        return this.name;
+    public String getID() {
+        return this.ID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String id) {
+        this.ID = id;
     }
 
     public double getPrice() {

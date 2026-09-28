@@ -34,4 +34,38 @@ public class ProductRepository implements GenericRepository<Product, String> {
 
         return product;
     }
+
+    public List<Product> searchByName(String name) {
+        List<Product> lsPrd = new ArrayList<>();
+
+        for (Product product : this.findAll()) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) {
+                lsPrd.add(product);
+            }
+        }
+        return lsPrd;
+    }
+
+    public List<Product> filterByCategory(String category) {
+
+        List<Product> lsPrd = new ArrayList<>();
+
+        for (Product product : this.findAll()) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
+                lsPrd.add(product);
+            }
+        }
+        return lsPrd;
+    }
+
+    public List<Product> filterByPrice(double minPrice, double maxPrice) {
+        List<Product> lsPrd = new ArrayList<>();
+
+        for (Product product : this.findAll()) {
+            if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice) {
+                lsPrd.add(product);
+            }
+        }
+        return lsPrd;
+    }
 }

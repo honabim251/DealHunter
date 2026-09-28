@@ -11,9 +11,9 @@ import com.dealhunter.dealhunter.model.Product;
 public class ShopeeProductSource implements ProductSource {
     @Override
     public List<Product> fetchProducts() {
-        Product p1 = new Product("Akko keyboard", 1500000);
-        Product p2 = new Product("SteelSeries Mouse", 1200000);
-        Product p3 = new Product("PS5 Controller", 1800000);
+        Product p1 = new Product("P01", "Akko keyboard", "Keyboard", 1500000);
+        Product p2 = new Product("P02", "SteelSeries Mouse", "Mouse", 1200000);
+        Product p3 = new Product("P03", "PS5 Controller", "Controller", 1800000);
 
         List<Product> listPrd = new ArrayList<>();
         listPrd.add(p1);

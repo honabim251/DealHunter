@@ -121,8 +121,7 @@ public class DealHunterCli implements CommandLineRunner {
 
                     break;
                 case 0:
-                    System.out.println("Exit selected");
-                    service.getProducts();
+                    System.out.println("Bye");
                     break;
                 default:
                     System.out.println("Invalid option");

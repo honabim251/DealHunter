@@ -41,7 +41,7 @@ public class Product {
         return this.category;
     }
 
-    public void setPrice(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

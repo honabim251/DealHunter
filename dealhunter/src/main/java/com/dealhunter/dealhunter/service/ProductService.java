@@ -1,7 +1,11 @@
 package com.dealhunter.dealhunter.service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.dealhunter.dealhunter.exception.ProductNotFoundException;
 import com.dealhunter.dealhunter.model.Product;
 import com.dealhunter.dealhunter.repository.ProductRepository;
 import com.dealhunter.dealhunter.source.ProductSource;
@@ -28,10 +32,6 @@ public class ProductService {
         return products;
     }
 
-    public Product getProductById(String id) {
-        return repository.findById(id);
-    }
-
     public void createProduct(Product product) {
         repository.save(product);
     }
@@ -53,5 +53,22 @@ public class ProductService {
             throw new IllegalArgumentException("Invalid price range");
         }
         return repository.filterByPrice(minPrice, maxPrice);
+    }
+
+    public List<Product> getProductsByCategory(String category) {
+        return source.fetchProducts().stream().filter(p -> p.getCategory().equalsIgnoreCase(category)).toList();
+    }
+
+    public List<Product> getProductsSortedByPrice() {
+        return source.fetchProducts().stream()
+                .sorted(Comparator.comparing(Product::getPrice)).toList();
+    }
+
+    public Map<String, List<Product>> groupProductsByCategory() {
+        return source.fetchProducts().stream().collect(Collectors.groupingBy(Product::getCategory));
+    }
+
+    public Product getProductById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 }

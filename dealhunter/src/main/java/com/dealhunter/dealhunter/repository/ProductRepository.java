@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.dealhunter.dealhunter.exception.ProductNotFoundException;
 import com.dealhunter.dealhunter.model.Product;
 
 @Repository
@@ -25,14 +25,10 @@ public class ProductRepository implements GenericRepository<Product, String> {
     }
 
     @Override
-    public Product findById(String id) {
+    public Optional<Product> findById(String id) {
         Product product = products.get(id);
 
-        if (product == null) {
-            throw new ProductNotFoundException(id);
-        }
-
-        return product;
+        return Optional.ofNullable(product);
     }
 
     public List<Product> searchByName(String name) {

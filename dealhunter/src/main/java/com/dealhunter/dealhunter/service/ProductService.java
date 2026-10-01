@@ -71,4 +71,20 @@ public class ProductService {
     public Product getProductById(String id) {
         return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
+
+    public List<Product> getTopDeals() {
+        return source.fetchProducts().stream()
+                .sorted(Comparator.comparingDouble(Product::getDiscount).reversed()).toList();
+    }
+
+    public List<Product> getTopDealsByCategory(String category) {
+        return source.fetchProducts().stream().filter(product -> product.getCategory().equals(category))
+                .sorted(Comparator.comparingDouble(Product::getDiscount).reversed()).limit(3).toList();
+    }
+
+    public Product getBestDealByCategory(String category) {
+        return source.fetchProducts().stream().filter(product -> product.getCategory().equals(category))
+                .max(Comparator.comparingDouble(Product::getDiscount))
+                .orElseThrow(() -> new ProductNotFoundException(category));
+    }
 }

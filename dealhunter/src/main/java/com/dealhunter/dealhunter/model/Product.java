@@ -5,12 +5,14 @@ public class Product {
     private String name;
     private String category;
     private double price;
+    private double discount;
 
-    public Product(String id, String name, String category, double price) {
+    public Product(String id, String name, String category, double price, double discount) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
+        this.discount = discount;
     }
 
     public String getID() {
@@ -43,6 +45,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public double getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     @Override

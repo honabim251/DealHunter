@@ -57,10 +57,14 @@ public class DealHunterCli implements CommandLineRunner {
                         double price = scanner.nextDouble();
                         scanner.nextLine();
 
+                        System.out.print("Enter product discount: ");
+                        double discount = scanner.nextDouble();
+                        scanner.nextLine();
+
                         if (id.isBlank() || name.isBlank() || category.isBlank() || price < 0.0) {
                             System.out.print("Invalid Product information. Please corect. ");
                         } else {
-                            Product prd = new Product(id, name, category, price);
+                            Product prd = new Product(id, name, category, price, discount);
 
                             service.createProduct(prd);
                             break;

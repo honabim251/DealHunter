@@ -1,10 +1,25 @@
 package com.dealhunter.dealhunter.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class Product {
+    @NotBlank(message = "Product id must not be blank")
     private String id;
+
+    @NotBlank(message = "Product name must not be blank")
     private String name;
+
+    @NotBlank(message = "Category must not be blank")
     private String category;
+
+    @Positive(message = "Price must be greater than 0")
     private double price;
+
+    @Min(value = 0, message = "Discount must be at least 0")
+    @Max(value = 100, message = "Discount must not exceed 100")
     private double discount;
 
     public Product(String id, String name, String category, double price, double discount) {
